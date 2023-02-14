@@ -76,6 +76,7 @@ int main(){
         }
     //update
     //update 2
+        //if numbers of 1 equal number of players, change the number which is not 1 to 1
         else if(oneInteger == amount){
             int place = rand() % 8;
             while(a[place] == 0 || a[place] == 1){
