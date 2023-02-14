@@ -65,7 +65,16 @@ int main(){
             }
             a[place] = 0;
         }
-        
+   //update
+        //if more than one numbers are 1 and there are no numbers greater than 1, change one 1 to 0
+        else if(oneInteger > 1 && wordCount == 0 ){
+            int place = rand() % 8;
+            while(a[place] == 0){
+                place = rand() % 8;
+            }
+            a[place] = 0;
+        }
+    //update
         // if only one number left, change it to 1
         else if (wordCount == 1 && zeroCount == 7){
             int place = rand() % 8;
