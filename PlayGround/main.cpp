@@ -16,14 +16,14 @@ logic
     3. if there is only one number change it to 1
 */
 int main(){
+    int amount;
+    cout <<"enter the number of players: ";
+    cin >> amount;
+    cin.ignore();
     while(true){
         int a [8] = {0};
-        int amount;
         vector<int> myVec;
         string ans;
-        cout <<"enter the number of players: ";
-        cin >> amount;
-        cin.ignore();
         cout << "enter the integers: ";
         getline(cin, ans);
         
