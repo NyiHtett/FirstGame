@@ -45,6 +45,7 @@ int main(){
         int wordCount = 0;
         int zeroCount = 0;
         int oneInteger = 0;
+        int twoInteger = 0;
         for(int i=0; i<8; i++){
             if(a[i] == 0){
                 zeroCount++;
@@ -52,19 +53,34 @@ int main(){
             else if(a[i] == 1){
                 oneInteger++;
             }
+            //update 3
+            else if(a[i] == 2){
+                twoInteger++;
+                wordCount++;
+            }
+            //update 3
             else{
                 wordCount++;
             }
         }
         
         //if only one 1 number left, change it to 0
-        if (oneInteger == 1 && zeroCount == 7){
+        if (oneInteger == 1 && zeroCount == 7 && wordCount == 0){
             int place = rand() % 8;
             while(a[place] == 0){
                 place = rand() % 8;
             }
             a[place] = 0;
         }
+        //update 3
+        else if (wordCount == 2 && twoInteger == 1){
+            int place = rand() % 8;
+            while(a[place] == 2 || a[place] == 0){
+                place = rand() % 8;
+            }
+            a[place]--;
+        }
+        //update 3
    //update
         //if more than one numbers are 1 and there are no numbers greater than 1, change one 1 to 0
         else if(oneInteger > 1 && wordCount == 0 ){
@@ -128,14 +144,22 @@ int main(){
         
         //checking whether all numbers are 0
         int count = 0;
+        int oneCount = 0;
         for(int i=0; i<8; i++){
             if(a[i] == 0){
                 count++;
             }
+            else if(a[i] == 1){
+                oneCount++;
+            }
         }
-        
+
         if(count == 8){
-            cout << "\n\n---- You lost the game ----\n\n";
+            cout << "\n\n---- I lose the game ----\n\n";
+            break;
+        }
+        else if(count == 7 && oneCount == 1){
+            cout << "\n\n---- I win the game ----\n\n";
             break;
         }
 
@@ -144,4 +168,3 @@ int main(){
         return 0;
    
 }
-
