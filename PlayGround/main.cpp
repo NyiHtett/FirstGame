@@ -35,9 +35,6 @@ int main(){
         for(int i=0; i<myVec.size(); i++){
             a[i] = myVec[i];
         }
-//        for(int i : a){
-//            cout << i << " done ";
-//        } checking
         
         /*
          count for number of
