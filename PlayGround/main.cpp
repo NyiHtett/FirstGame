@@ -75,6 +75,15 @@ int main(){
             a[place] = 0;
         }
     //update
+    //update 2
+        else if(oneInteger == amount){
+            int place = rand() % 8;
+            while(a[place] == 0 || a[place] == 1){
+                place = rand() % 8;
+            }
+            a[place] = 1;
+        }
+    //update 2
         // if only one number left, change it to 1
         else if (wordCount == 1 && zeroCount == 7){
             int place = rand() % 8;
