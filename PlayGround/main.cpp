@@ -64,8 +64,30 @@ int main(){
             }
         }
         
+        if (wordCount == 2 && zeroCount == 6 && oneInteger == 1){
+            int place = rand() % 8;
+            while(a[place] == 0 || a[place] == 1){
+                place = rand() % 8;
+            }
+            a[place] = 0;
+        }
+        else if(wordCount==2 && amount == 2)
+        {
+            if(a[0]>a[1])
+            {
+                a[0]=a[1];
+            }
+            else if(a[1]>a[0])
+            {
+                a[1]=a[0];
+            }
+            else{
+                a[0]--;
+            }
+        }
+        
         //if only one 1 number left, change it to 0
-        if (oneInteger == 1 && zeroCount == 7 && wordCount == 0){
+        else if (oneInteger == 1 && zeroCount == 7 && wordCount == 0){
             int place = rand() % 8;
             while(a[place] == 0){
                 place = rand() % 8;
@@ -111,13 +133,8 @@ int main(){
         }
         
         // if two numbers left and one number is 1, change the another to zero
-        else if (wordCount == 2 && zeroCount == 6 && oneInteger == 1){
-            int place = rand() % 8;
-            while(a[place] == 0 || a[place] == 1){
-                place = rand() % 8;
-            }
-            a[place] = 0;
-        }
+        
+        
         
         //checking whether number of integers(exclude 0,1) equal number of players
         //if equal reduce just one
