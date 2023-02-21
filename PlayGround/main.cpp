@@ -21,6 +21,8 @@ int main(){
     cin >> amount;
     cin.ignore();
     while(true){
+        
+        // getting the sequence of integers and storing them in array
         int a [8] = {0};
         vector<int> myVec;
         string ans;
@@ -53,36 +55,40 @@ int main(){
             else if(a[i] == 1){
                 oneInteger++;
             }
-            //update 3
             else if(a[i] == 2){
                 twoInteger++;
                 wordCount++;
             }
-            //update 3
             else{
                 wordCount++;
             }
         }
         
-        if (wordCount == 2 && zeroCount == 6 && oneInteger == 1){
-            int place = rand() % 8;
-            while(a[place] == 0 || a[place] == 1){
-                place = rand() % 8;
-            }
-            a[place] = 0;
-        }
-        else if(wordCount==2 && amount == 2)
+        //if there are two numbers(exclude 1,0), trace the other one or reduce one
+        if(wordCount==2 && amount == 2)
         {
-            if(a[0]>a[1])
-            {
-                a[0]=a[1];
+            bool firstNumberFound = false;
+            int firstNumberPlace = 0;
+            int secondNumberPlace = 0;
+            for(int i=0; i<8; i++){
+                if(a[i] != 0 && a[i] != 1){
+                    if(!firstNumberFound){
+                        firstNumberPlace = i;
+                        firstNumberFound = true;
+                    }
+                    else{
+                        secondNumberPlace = i;
+                    }
+                }
             }
-            else if(a[1]>a[0])
-            {
-                a[1]=a[0];
+            if(a[firstNumberPlace] < a[secondNumberPlace]){
+                a[secondNumberPlace] = a[firstNumberPlace];
+            }
+            else if(a[firstNumberPlace] > a[secondNumberPlace]){
+                a[firstNumberPlace] = a[secondNumberPlace];
             }
             else{
-                a[0]--;
+                a[firstNumberPlace]--;
             }
         }
         
@@ -94,16 +100,7 @@ int main(){
             }
             a[place] = 0;
         }
-        //update 3
-        else if (wordCount == 2 && twoInteger == 1){
-            int place = rand() % 8;
-            while(a[place] == 2 || a[place] == 0){
-                place = rand() % 8;
-            }
-            a[place]--;
-        }
-        //update 3
-   //update
+ 
         //if more than one numbers are 1 and there are no numbers greater than 1, change one 1 to 0
         else if(oneInteger > 1 && wordCount == 0 ){
             int place = rand() % 8;
@@ -112,8 +109,7 @@ int main(){
             }
             a[place] = 0;
         }
-    //update
-    //update 2
+        
         //if numbers of 1 equal number of players, change the number which is not 1 to 1
         else if(oneInteger == amount){
             int place = rand() % 8;
@@ -122,7 +118,7 @@ int main(){
             }
             a[place] = 1;
         }
-    //update 2
+        
         // if only one number left, change it to 1
         else if (wordCount == 1 && zeroCount == 7){
             int place = rand() % 8;
@@ -131,10 +127,6 @@ int main(){
             }
             a[place] = 1;
         }
-        
-        // if two numbers left and one number is 1, change the another to zero
-        
-        
         
         //checking whether number of integers(exclude 0,1) equal number of players
         //if equal reduce just one
@@ -148,7 +140,12 @@ int main(){
                 a[place]--;
             }
             else {
-                a[place] = 0;
+                if (oneInteger % 2 == 0){
+                    a[place] = 1;
+                }
+                else{
+                    a[place] = 0;
+                }
             }
         }
         
@@ -159,7 +156,7 @@ int main(){
             cout << i << " ";
         }
         
-        //checking whether all numbers are 0
+        //considering winning or losing
         int count = 0;
         int oneCount = 0;
         for(int i=0; i<8; i++){
